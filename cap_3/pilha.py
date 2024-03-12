@@ -1,19 +1,3 @@
-'''
-class Carro:
-    def __init__(self, cor, preco, ano):
-        self.cor = cor
-        self.preco = preco
-        self.ano = ano
-
-    def pintura(self, cor):
-        self.cor = cor
-    def aumento_preco(self, percentual):
-        self.preco = self.preco + ((self.preco * percentual)/100)
-
-celta = Carro('preto', 1000, 1999)
-ferrari = Carro('vermelho', 10000, 2000) 
-'''        
-
 class ListaEncadeada:
     def __init__(self):
 
@@ -94,6 +78,8 @@ class ListaEncadeada:
         else:
             lista = self.search(indice - 1)
             lista.prox_elemento = lista.prox_elemento.prox_elemento
+            if lista.prox_elemento == None:
+                lista.prox_elemento = ListaEncadeada()
 
     def sort_asc(self):
         lista_ordenada = ListaEncadeada()
@@ -124,23 +110,29 @@ class ListaEncadeada:
         self.elemento = lista_ordenada.elemento
         self.prox_elemento = lista_ordenada.prox_elemento
 
-            
-     
-            
-            
-            
-            
-  
-                                
-lista = ListaEncadeada()
-lista.append(5)
-lista.append(80)
-lista.append(1)        
-lista.append(4)        
-#print(lista)
-# lista.delete(1)
-#print(lista)
-lista.sort_asc()
-print(lista)
-            
+# pilha com push e pop
+class Pilha:
+    def __init__(self):
+        self.lista_encadeada = ListaEncadeada()
+        self.ultimo_indice = -1
         
+    def __repr__(self):
+        return str(self.lista_encadeada)
+
+    def push(self, valor):
+        self.lista_encadeada.append(valor)
+        self.ultimo_indice += 1
+
+    def pop(self):
+        self.lista_encadeada.delete(self.ultimo_indice)
+        self.ultimo_indice -= 1
+        
+
+pilha = Pilha()
+pilha.push(1)
+pilha.push(2)
+print(pilha)
+pilha.pop()
+print(pilha)
+pilha.pop()
+print(pilha)
